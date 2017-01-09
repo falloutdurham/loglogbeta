@@ -5,6 +5,12 @@ use std::hash::{Hash,Hasher};
 use self::siphasher::sip::SipHasher;
 use std::marker::PhantomData;
 
+/// [LogLog-Beta and More: A New Algorithm for Cardinality Estimation Based on LogLog Counting](https://arxiv.org/abs/1612.02284)
+///
+/// A new algorithm for estimating cardinalities. More efficient and easier to implement than
+/// your standard common or garden HyperLogLog.
+///
+/// (some of the implementation code borrows liberally from Coda Hale's [Sketchy](https://github.com/codahale/sketchy) library)
 ///
 /// ```
 /// use loglogbeta::LogLogBeta;
@@ -41,7 +47,8 @@ impl<E: Hash> LogLogBeta<E> {
         }
     }
 
-    /// Insert an element
+    /// Inserts an element into the LLB
+
     pub fn insert(&mut self, e: E) {
         let mut h = SipHasher::new();
         e.hash(&mut h);
@@ -54,6 +61,7 @@ impl<E: Hash> LogLogBeta<E> {
 
 
     /// Obtain a cardinality estimate from the LogLogBeta counter
+
     pub fn estimate(&self) -> f64 { 
         let z = self.m.iter().filter(|&i| *i == 0).count();
         let m_s = self.msize as f64;
@@ -114,8 +122,6 @@ mod test {
         for i in 0..actual as usize {
             hll.insert(i);
         }
-
-        println!("Hey, hey, hey {}", hll.estimate());
 
         assert!(hll.estimate() > (actual - (actual * p)));
         assert!(hll.estimate() < (actual + (actual * p)));
