@@ -100,7 +100,7 @@ fn rho(w: u64, max_width: isize) -> u64 {
 
 fn beta(z: usize) -> f64 {
     let z = z as f64;
-    let z_l = (z as f64 + 1.0).log2();
+    let z_l = (z + 1.0).log2();
     -0.370393911 * z
     + 0.070471823 * z_l
     + 0.17393686 * z_l.powi(2) 
