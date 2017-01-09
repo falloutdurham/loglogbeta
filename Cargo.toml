@@ -1,0 +1,7 @@
+[package]
+name = "loglogbeta"
+version = "0.1.0"
+authors = ["Ian Pointer <ian@falloutdurham.com>"]
+
+[dependencies]
+siphasher = "~0.1"
