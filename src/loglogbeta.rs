@@ -1,8 +1,7 @@
-extern crate siphasher;
 
 use std::cmp::{max};
 use std::hash::{Hash,Hasher};
-use self::siphasher::sip::SipHasher;
+use siphasher::sip::SipHasher;
 use std::marker::PhantomData;
 
 /// [LogLog-Beta and More: A New Algorithm for Cardinality Estimation Based on LogLog Counting](https://arxiv.org/abs/1612.02284)

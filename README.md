@@ -2,7 +2,7 @@
 
  A new algorithm for estimating cardinalities. More efficient and easier to implement than your standard common or garden HyperLogLog. 
 
- Here's a Rust implementation
+ Here's a Rust implementation.
 
  (some of the implementation code borrows liberally from Coda Hale's [Sketchy](https://github.com/codahale/sketchy) library)
 
