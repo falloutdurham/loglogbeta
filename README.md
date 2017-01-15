@@ -9,11 +9,11 @@
  ```
  use loglogbeta::LogLogBeta;
 
- let mut hll = LogLogBeta::new(0.05); // 5% margin of error
+ let mut llb = LogLogBeta::new(0.05); // 5% margin of error
 
  for i in 0..10000 {
-     hll.insert(i);
+     llb.insert(i);
  }
- assert!(hll.estimate() < 10500.0);
- assert!(hll.estimate() >  9500.0);
+ assert!(llb.estimate() < 10500.0);
+ assert!(llb.estimate() >  9500.0);
  ```
