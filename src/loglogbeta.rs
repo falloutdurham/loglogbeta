@@ -14,13 +14,13 @@ use std::marker::PhantomData;
 /// ```
 /// use loglogbeta::LogLogBeta;
 ///
-/// let mut hll = LogLogBeta::new(0.05); // 5% margin of error
+/// let mut llb = LogLogBeta::new(0.05); // 5% margin of error
 ///
 /// for i in 0..10000 {
-///     hll.insert(i);
+///     llb.insert(i);
 /// }
-/// assert!(hll.estimate() < 10500.0);
-/// assert!(hll.estimate() >  9500.0);
+/// assert!(llb.estimate() < 10500.0);
+/// assert!(llb.estimate() >  9500.0);
 /// ```
 ///
 
@@ -117,13 +117,13 @@ mod test {
     fn insert() {
         let actual = 1000000.0;
         let p = 0.05;
-        let mut hll = loglogbeta::LogLogBeta::new(p);
+        let mut llb = loglogbeta::LogLogBeta::new(p);
         for i in 0..actual as usize {
-            hll.insert(i);
+            llb.insert(i);
         }
 
-        assert!(hll.estimate() > (actual - (actual * p)));
-        assert!(hll.estimate() < (actual + (actual * p)));
+        assert!(llb.estimate() > (actual - (actual * p)));
+        assert!(llb.estimate() < (actual + (actual * p)));
     }
 }
 
